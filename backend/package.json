@@ -1,0 +1,24 @@
+{
+  "name": "course-selling-website",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.8.1",
+    "node-fetch": "^3.3.2",
+    "nodemon": "^3.1.7",
+    "razorpay": "^2.9.5",
+    "zod": "^3.23.8"
+  }
+}
