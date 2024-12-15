@@ -23,8 +23,6 @@ const Registration = () => {
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
 
-    console.log(fullName);
-
     try {
       if (!fullName) {
         setError("Please Enter your Full name");
