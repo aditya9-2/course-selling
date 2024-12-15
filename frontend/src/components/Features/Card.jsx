@@ -11,7 +11,7 @@ const Card = ({ cardImage, title, price }) => {
         className="w-full h-1/2 object-cover rounded-t-3xl"
       />
 
-      <div className="p-2 ">
+      <div className="p-2">
         <h3 className="text-lg text-black font-extrabold">{title}</h3>
         <p className="text-black  font-bold mt-10 mb-4">
           {" "}
