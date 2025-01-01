@@ -4,9 +4,11 @@ import AuthInputBox from "../components/InputBox/AuthInputBox";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BE_USER_URL } from "../config/config";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -20,7 +22,6 @@ const Login = () => {
   const handleLogin = async () => {
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
-    console.log(email, password);
 
     try {
       if (!email) {
@@ -42,14 +43,15 @@ const Login = () => {
 
       const { accessToken } = response.data;
 
-      localStorage.setItem("token", accessToken);
-
       if (response.data && accessToken) {
+        login(email, accessToken);
         navigate("/");
-        alert("Login Successfull");
+        alert("Login Successful");
       }
     } catch (error) {
       console.log("Unexpected error", error.message);
+      setError("Login failed. Please check your credentials.");
+      setTimeout(() => setError(null), 3000);
     }
   };
 
@@ -71,12 +73,12 @@ const Login = () => {
         </div>
         <div className="mt-3 p-2">
           <p>
-            Dont have an account?{" "}
+            Don't have an account?{" "}
             <span
               className="text-blue-400 cursor-pointer hover:underline"
               onClick={handleNavigation}
             >
-              Register yourslef here
+              Register yourself here
             </span>
           </p>
         </div>

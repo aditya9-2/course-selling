@@ -1,23 +1,31 @@
 import { useSetRecoilState } from "recoil";
+import { useNavigate } from "react-router-dom";
 import PrimaryBtn from "./buttons/primaryBtn";
 import InputBox from "./InputBox/InputBox";
 import { IoMenuSharp } from "react-icons/io5";
 import { sidebarState } from "../store/menuAtom";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const setSidebarState = useSetRecoilState(sidebarState);
+  const navigate = useNavigate();
+  const auth = useAuth();
 
   const handleSignup = () => {
-    // signup logic
+    navigate("/registration");
   };
 
   const handleLogin = () => {
-    // login logic
+    navigate("/login");
   };
 
   const toggleSidebar = () => {
-    console.log(`clicked`);
     setSidebarState((prev) => !prev);
+  };
+
+  const getUserInitials = (email) => {
+    if (!email) return "";
+    return email.split("@")[0].substring(0, 2).toUpperCase();
   };
 
   return (
@@ -31,8 +39,18 @@ const Navbar = () => {
       </div>
       <div className="hidden md:flex md:items-center md:gap-4">
         <InputBox type={"text"} Placeholder={"Type here to search"} />
-        <PrimaryBtn type={"Register"} onclick={handleSignup} />
-        <PrimaryBtn type={"Login"} onclick={handleLogin} />
+        {auth?.user ? (
+          <>
+            <div className="bg-secondaryColor text-white font-semibold rounded-full w-12 h-12  flex items-center justify-center border">
+              {getUserInitials(auth.user.email)}
+            </div>
+          </>
+        ) : (
+          <>
+            <PrimaryBtn type={"Register"} onclick={handleSignup} />
+            <PrimaryBtn type={"Login"} onclick={handleLogin} />
+          </>
+        )}
       </div>
     </div>
   );
