@@ -15,7 +15,7 @@ const Registration = () => {
   const [error, setError] = useState(null);
 
   const handleNavigation = () => {
-    navigate("/user/login");
+    navigate("/login");
   };
 
   const handleSignup = async () => {
@@ -52,7 +52,7 @@ const Registration = () => {
       localStorage.setItem("token", tokenData);
 
       if (response.data && tokenData) {
-        navigate("/user/login");
+        navigate("/login");
       }
     } catch (error) {
       console.log("Unexpected error", error.message);

@@ -14,7 +14,7 @@ const Login = () => {
   const [error, setError] = useState(null);
 
   const handleNavigation = () => {
-    navigate("/user/registration");
+    navigate("/registration");
   };
 
   const handleLogin = async () => {
@@ -45,7 +45,7 @@ const Login = () => {
       localStorage.setItem("token", accessToken);
 
       if (response.data && accessToken) {
-        navigate("/user/home");
+        navigate("/");
         alert("Login Successfull");
       }
     } catch (error) {
