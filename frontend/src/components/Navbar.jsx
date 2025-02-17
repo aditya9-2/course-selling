@@ -1,10 +1,12 @@
 import { GraduationCap, ArrowRightFromLine, AlignRight } from "lucide-react";
 import Button from "./Button";
-
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [openHaburger, setOpenHamburger] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSignin = async () => {};
   const handleSignup = async () => {};
@@ -14,12 +16,14 @@ const Navbar = () => {
   };
 
   return (
-    <div className="h-18 w-dvw bg-[#5A47AB] flex items-center justify-between p-4">
-      <div className="logo flex gap-3">
+    <div className="h-18 w-dvw bg-[#5A47AB] flex items-center justify-between p-4 cursor-pointer">
+      <div className="logo flex gap-3" onClick={() => navigate("/")}>
         <span>
           <GraduationCap size={30} color={"#FBD15B"} />
         </span>
-        <h1 className="text-[#FBD15B] text-2xl font-cursive">Course Arena</h1>
+        <span className="text-[#FBD15B] text-2xl font-cursive">
+          Course Arena
+        </span>
       </div>
 
       {/* Hamburger */}
