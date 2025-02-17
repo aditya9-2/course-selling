@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+:root {
+  
+  font-family: "Roboto Condensed", serif;
+}
+
+@theme{
+  --font-cursive: "Cedarville Cursive", serif;
+  --primary-purple: #5A47AB;
+  --secondary-purple: #39229A;
+  --custom-white: #F2F2F2;
+  --custom-yellow: #FBD15B;
+  --custom-green: #23BA29;
+  --custom-pink: #DA5077;
+  --custom-gradient-one: "linear-gradient(90deg, #FCEE21 0%, #00A99D 100%)";
+
+}
