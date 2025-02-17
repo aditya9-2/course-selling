@@ -48,11 +48,11 @@ const Footer = () => {
           </h1>
           <p className=" cursor-pointer flex items-center justify-center gap-2 hover:text-gray-600">
             <FaXTwitter />
-            <a href="">Twitter</a>
+            <a href="https://x.com/aadityaa027">Twitter</a>
           </p>
           <p className="cursor-pointer flex items-center justify-center gap-2 hover:text-gray-600">
             <FaLinkedin />
-            <a href="">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/aadityabasak20">LinkedIn</a>
           </p>
         </div>
       </div>
