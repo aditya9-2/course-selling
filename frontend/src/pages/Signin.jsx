@@ -94,7 +94,7 @@ const Signin = () => {
           <p className="text-center text-sm text-red-400 mb-0">{error}</p>
         )}
         <div className="p-3">
-          <Button label={"Signin"} onclick={handleSignin} />
+          <Button label={"Signin"} onClick={handleSignin} />
         </div>
         <p className="text-white text-sm text-center">
           Already Have an Acoount?{" "}
