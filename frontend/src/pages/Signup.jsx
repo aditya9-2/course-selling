@@ -38,13 +38,16 @@ const Signup = () => {
       const data = response.data;
 
       if (!data) {
-        console.log(`registration faield`);
         toast.error("Registration Faield", {
           position: "bottom-right",
           duration: 1500,
           style: { backgroundColor: "red", color: "white" },
         });
       }
+      const token = data.token;
+
+      localStorage.setItem("token", token);
+
       toast.success("Registration Sucess", {
         position: "bottom-right",
         duration: 1500,
