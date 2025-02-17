@@ -8,20 +8,17 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
-  const toggleSignup = async () => {};
-  const toggleSignin = async () => {};
-
   const toggleHamburger = () => {
     setOpenHamburger(!openHaburger);
   };
 
   const handleNavigate = (path) => {
     navigate(path);
-    setOpenHamburger(false); // Close the hamburger after navigation
+    setOpenHamburger(false);
   };
 
   return (
-    <div className="h-18 w-dvw bg-[#5A47AB] flex items-center justify-between p-4 cursor-pointer">
+    <div className="h-18 w-full bg-[#5A47AB] flex items-center justify-between p-4 cursor-pointer">
       <div className="logo flex gap-3" onClick={() => handleNavigate("/")}>
         <span>
           <GraduationCap size={30} color={"#FBD15B"} />
@@ -61,8 +58,12 @@ const Navbar = () => {
       </div>
 
       <div className="hidden md:flex items-center gap-4">
-        <Button label={"Signup"} type={"border-btn"} onClick={toggleSignup} />
-        <Button label={"Signin"} onClick={toggleSignin} />
+        <Button
+          label={"Signup"}
+          type={"border-btn"}
+          onClick={() => navigate("/signup")}
+        />
+        <Button label={"Signin"} onClick={() => navigate("/signin")} />
       </div>
 
       {/* Hamburger logic */}
@@ -94,8 +95,12 @@ const Navbar = () => {
         </div>
 
         <div className="absolute bottom-18 right-20 p-4 flex  items-center gap-5">
-          <Button label={"Signup"} type={"border-btn"} onclick={toggleSignup} />
-          <Button label={"Signin"} onclick={toggleSignin} />
+          <Button
+            label={"Signup"}
+            type={"border-btn"}
+            onclick={() => handleNavigate("/signup")}
+          />
+          <Button label={"Signin"} onclick={() => handleNavigate("/signin")} />
         </div>
       </div>
     </div>
