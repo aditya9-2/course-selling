@@ -5,7 +5,7 @@ const Footer = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-dvw bg-[#F2F2F2] h-60 fixed bottom-0">
+    <div className="w-full bg-[#F2F2F2] h-60">
       <div className="flex justify-between g-5 px-10 py-6">
         <div className="font-semibold" onClick={() => navigate("/")}>
           <span className="text-[#39229A] text-2xl md:text-5xl ">
