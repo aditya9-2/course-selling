@@ -8,16 +8,21 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
-  const handleSignin = async () => {};
-  const handleSignup = async () => {};
+  const toggleSignup = async () => {};
+  const toggleSignin = async () => {};
 
   const toggleHamburger = () => {
     setOpenHamburger(!openHaburger);
   };
 
+  const handleNavigate = (path) => {
+    navigate(path);
+    setOpenHamburger(false); // Close the hamburger after navigation
+  };
+
   return (
     <div className="h-18 w-dvw bg-[#5A47AB] flex items-center justify-between p-4 cursor-pointer">
-      <div className="logo flex gap-3" onClick={() => navigate("/")}>
+      <div className="logo flex gap-3" onClick={() => handleNavigate("/")}>
         <span>
           <GraduationCap size={30} color={"#FBD15B"} />
         </span>
@@ -37,21 +42,27 @@ const Navbar = () => {
 
       <div className="hidden md:flex text-xl text-[#F2F2F2]">
         <ul className="flex justify-center items-center gap-13">
-          <li className="hover:opacity-85 my-5">
-            <a href="#">Home</a>
+          <li className="hover:opacity-85 my-5" onClick={() => navigate("/")}>
+            Home
           </li>
-          <li className="hover:opacity-85 my-5">
-            <a href="#">About</a>
+          <li
+            className="hover:opacity-85 my-5"
+            onClick={() => navigate("/about")}
+          >
+            About
           </li>
-          <li className="hover:opacity-85 my-5">
-            <a href="#">Courses</a>
+          <li
+            className="hover:opacity-85 my-5"
+            onClick={() => navigate("/courses")}
+          >
+            Courses
           </li>
         </ul>
       </div>
 
       <div className="hidden md:flex items-center gap-4">
-        <Button label={"Signup"} type={"border-btn"} onClick={handleSignup} />
-        <Button label={"Signin"} onClick={handleSignin} />
+        <Button label={"Signup"} type={"border-btn"} onClick={toggleSignup} />
+        <Button label={"Signin"} onClick={toggleSignin} />
       </div>
 
       {/* Hamburger logic */}
@@ -61,21 +72,30 @@ const Navbar = () => {
       >
         <div className="text-2xl text-[#F2F2F2]">
           <ul className="p-4 mt-4">
-            <li className="hover:opacity-85 my-5">
-              <a href="#">Home</a>
+            <li
+              className="hover:opacity-85 my-5"
+              onClick={() => handleNavigate("/")}
+            >
+              Home
             </li>
-            <li className="hover:opacity-85 my-5">
-              <a href="#">About</a>
+            <li
+              className="hover:opacity-85 my-5"
+              onClick={() => handleNavigate("/about")}
+            >
+              About
             </li>
-            <li className="hover:opacity-85 my-5">
-              <a href="#">Courses</a>
+            <li
+              className="hover:opacity-85 my-5"
+              onClick={() => handleNavigate("/courses")}
+            >
+              Courses
             </li>
           </ul>
         </div>
 
         <div className="absolute bottom-18 right-20 p-4 flex  items-center gap-5">
-          <Button label={"Signup"} type={"border-btn"} onclick={handleSignup} />
-          <Button label={"Signin"} onclick={handleSignin} />
+          <Button label={"Signup"} type={"border-btn"} onclick={toggleSignup} />
+          <Button label={"Signin"} onclick={toggleSignin} />
         </div>
       </div>
     </div>
