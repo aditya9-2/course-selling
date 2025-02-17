@@ -61,9 +61,16 @@ const Navbar = () => {
         <Button
           label={"Signup"}
           type={"border-btn"}
-          onClick={() => navigate("/signup")}
+          onClick={() => {
+            navigate("/signup");
+          }}
         />
-        <Button label={"Signin"} onClick={() => navigate("/signin")} />
+        <Button
+          label={"Signin"}
+          onClick={() => {
+            navigate("/signin");
+          }}
+        />
       </div>
 
       {/* Hamburger logic */}
@@ -98,9 +105,9 @@ const Navbar = () => {
           <Button
             label={"Signup"}
             type={"border-btn"}
-            onclick={() => handleNavigate("/signup")}
+            onClick={() => handleNavigate("/signup")}
           />
-          <Button label={"Signin"} onclick={() => handleNavigate("/signin")} />
+          <Button label={"Signin"} onClick={() => handleNavigate("/signin")} />
         </div>
       </div>
     </div>
