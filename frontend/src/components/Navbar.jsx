@@ -18,7 +18,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 h-18 w-full bg-[#5A47AB] flex items-center justify-between p-4 cursor-pointer">
+    <div className="fixed top-0 left-0 z-20 h-18 w-full bg-[#5A47AB] flex items-center justify-between p-4 cursor-pointer">
       <div className="logo flex gap-3" onClick={() => handleNavigate("/")}>
         <span>
           <GraduationCap size={30} color={"#FBD15B"} />
