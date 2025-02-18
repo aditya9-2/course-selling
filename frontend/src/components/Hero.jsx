@@ -6,10 +6,11 @@ const Hero = ({
   sublabel,
   image,
   color = "bg-[#5A47AB]",
-  txtClr = "text-[#F2F2F2]",
+  txtClr = "text-[#FBD15B]",
+  subTxtColor = "text-[#F2F2F2]",
 }) => {
   return (
-    <div className={`h-75 md:h-[24rem] ${color} py-4 px-4 md:px-14`}>
+    <div className={`h-75 md:h-[25.5rem] ${color} py-4 px-4 md:px-14`}>
       <div className="flex justify-between items-center  gap-5 ">
         <div
           className={`${txtClr} text-wrap md:text-nowrap leading-6 md:leading-0`}
@@ -18,15 +19,17 @@ const Hero = ({
             {" "}
             {label}
           </h1>
-          <p className="text-thin text-sm md:text-xl text-justify">
+          <p
+            className={`font-thin ${subTxtColor} text-sm md:text-xl text-justify`}
+          >
             {sublabel}
           </p>
         </div>
-        <div className="w-96 md:w-74">
+        <div className="w-96 md:w-84">
           <img src={image} alt="" />
         </div>
       </div>
-      <div className="mt-10 md:mt-0">
+      <div className="mt-10 md:mt-0 relative md:bottom-10">
         <Button label={"Explore now"} width={"w-34 md:w-54"} />
       </div>
     </div>
