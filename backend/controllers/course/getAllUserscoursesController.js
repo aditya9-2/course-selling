@@ -14,7 +14,7 @@ const getAlluserCourses = async (req, res) => {
 
         const userCourses = await courseModel.find({ userId: userId });
 
-        if (!userCourses) {
+        if (userCourses.length === 0) {
             return res.status(404).json({
                 message: "No courses found for this user"
             });
