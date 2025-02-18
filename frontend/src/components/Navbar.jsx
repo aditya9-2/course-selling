@@ -2,7 +2,7 @@ import { GraduationCap, ArrowRightFromLine, AlignRight } from "lucide-react";
 import Button from "./Button";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "sonner";
+
 import useAuthStore from "../store/authStore";
 
 const Navbar = () => {
