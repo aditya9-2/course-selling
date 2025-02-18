@@ -1,5 +1,5 @@
 import Hero from "../components/Hero";
-import HeroIcon from "../assets/hero_icon.svg";
+import HeroIcon from "../assets/hero_icon.png";
 import HomeCard from "../components/HomeCard";
 import bag from "../assets/bag.png";
 import group from "../assets/group.png";
@@ -19,6 +19,7 @@ const Home = () => {
         sublabel={`Experience the future of education. Our innovative platform empowers
     learners and educators alike.`}
         image={HeroIcon}
+        onClick={() => navigate("/courses")}
       />
 
       <div className="p-4 pt-10">
