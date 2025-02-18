@@ -1,5 +1,5 @@
 import CourseCard from "../components/CourseCard";
-import one from "../assets/course-Thumbnail/one.png";
+
 const Dashboard = () => {
   const toggleCourse = () => {};
   return (
@@ -11,11 +11,12 @@ const Dashboard = () => {
       <div className="flex flex-wrap justify-center items-center gap-10">
         <CourseCard
           onCLick={toggleCourse}
-          img={one}
+          img={""}
           title={"0-100 Cohort"}
           subtitle={
             "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque aliquid excepturi sed vel porro sapiente?"
           }
+          price={1200}
         />
       </div>
     </div>
