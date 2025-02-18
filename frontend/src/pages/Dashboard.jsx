@@ -1,7 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import CourseCard from "../components/CourseCard";
 
 const Dashboard = () => {
-  const toggleCourse = () => {};
+  const navigate = useNavigate();
+
+  const toggleCourse = () => {
+    navigate("/video");
+  };
   return (
     <div className="h-auto py-18 px-9">
       <h1 className="text-3xl md:text-5xl py-4 px-7 font-semibold mb-6 mt-4">
