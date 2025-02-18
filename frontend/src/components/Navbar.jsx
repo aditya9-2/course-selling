@@ -1,10 +1,20 @@
 import { GraduationCap, ArrowRightFromLine, AlignRight } from "lucide-react";
 import Button from "./Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import useAuthStore from "../store/authStore";
 
 const Navbar = () => {
   const [openHaburger, setOpenHamburger] = useState(false);
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated); // Access state
+  const setAuthenticated = useAuthStore((state) => state.setAuthenticated); // Access setter
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setAuthenticated(!!token); //The !! is a shorthand way of converting a value to a boolean (true or false)
+  }, [setAuthenticated]);
 
   const navigate = useNavigate();
 
@@ -15,6 +25,12 @@ const Navbar = () => {
   const handleNavigate = (path) => {
     navigate(path);
     setOpenHamburger(false);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setAuthenticated(false);
+    navigate("/");
   };
 
   return (
@@ -29,7 +45,7 @@ const Navbar = () => {
       </div>
 
       {/* Hamburger */}
-      <button className="md:hidden" onClick={toggleHamburger}>
+      <button className="md:hidden cursor-pointer" onClick={toggleHamburger}>
         {openHaburger ? (
           <ArrowRightFromLine color="#F2F2F2" size={30} />
         ) : (
@@ -58,19 +74,21 @@ const Navbar = () => {
       </div>
 
       <div className="hidden md:flex items-center gap-4">
-        <Button
-          label={"Signup"}
-          type={"border-btn"}
-          onClick={() => {
-            navigate("/signup");
-          }}
-        />
-        <Button
-          label={"Signin"}
-          onClick={() => {
-            navigate("/signin");
-          }}
-        />
+        {isAuthenticated ? (
+          <Button label={"Logout"} type={"border-btn"} onClick={handleLogout} />
+        ) : (
+          <>
+            <Button
+              label={"Signup"}
+              type={"border-btn"}
+              onClick={() => handleNavigate("/signup")}
+            />
+            <Button
+              label={"Signin"}
+              onClick={() => handleNavigate("/signin")}
+            />
+          </>
+        )}
       </div>
 
       {/* Hamburger logic */}
@@ -102,12 +120,27 @@ const Navbar = () => {
         </div>
 
         <div className="absolute bottom-18 right-20 p-4 flex  items-center gap-5">
-          <Button
-            label={"Signup"}
-            type={"border-btn"}
-            onClick={() => handleNavigate("/signup")}
-          />
-          <Button label={"Signin"} onClick={() => handleNavigate("/signin")} />
+          {isAuthenticated ? (
+            <div className="absolute left-[-22.8rem]">
+              <Button
+                label={"Logout"}
+                type={"border-btn"}
+                onClick={handleLogout}
+              />
+            </div>
+          ) : (
+            <>
+              <Button
+                label={"Signup"}
+                type={"border-btn"}
+                onClick={() => handleNavigate("/signup")}
+              />
+              <Button
+                label={"Signin"}
+                onClick={() => handleNavigate("/signin")}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>
