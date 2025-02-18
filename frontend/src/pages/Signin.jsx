@@ -5,8 +5,10 @@ import PasswordInput from "../components/PasswordInput";
 import { useRef, useState } from "react";
 import { toast, Toaster } from "sonner";
 import axios from "axios";
+import useAuthStore from "../store/authStore";
 
 const Signin = () => {
+  const setAuthenticated = useAuthStore((state) => state.setAuthenticated);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -24,28 +26,20 @@ const Signin = () => {
     }
 
     try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        toast.error("Token Not Found", {
-          position: "bottom-right",
-          duration: 1500,
-          style: { backgroundColor: "red", color: "white" },
-        });
-      }
       const response = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/api/v1/users/user-login`,
         {
           email,
           password,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
         }
       );
 
       const data = response.data;
+      console.log(JSON.stringify(data));
+      const token = data.accessToken;
+
+      localStorage.setItem("token", token);
+      setAuthenticated(true);
 
       if (!data) {
         toast.error("Signin Faield", {
@@ -54,6 +48,7 @@ const Signin = () => {
           style: { backgroundColor: "red", color: "white" },
         });
       }
+
       toast.success("Signin Sucess", {
         position: "bottom-right",
         duration: 1500,
