@@ -44,9 +44,6 @@ const Signup = () => {
           style: { backgroundColor: "red", color: "white" },
         });
       }
-      const token = data.token;
-
-      localStorage.setItem("token", token);
 
       toast.success("Registration Sucess", {
         position: "bottom-right",
@@ -91,7 +88,7 @@ const Signup = () => {
           <p className="text-center text-sm text-red-400 mb-0">{error}</p>
         )}
         <div className="p-3">
-          <Button label={"Signup"} onclick={handleSignup} />
+          <Button label={"Signup"} onClick={handleSignup} />
         </div>
         <p className="text-white text-sm text-center">
           Already Have an Acoount?{" "}
