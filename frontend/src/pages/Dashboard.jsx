@@ -55,7 +55,7 @@ const Dashboard = () => {
               subtitle={course.courseId?.description}
               img={course.courseId?.imageUrl}
               price={course.price}
-              onCLick={toggleCourse}
+              onClick={toggleCourse}
             />
           ))
         ) : (
