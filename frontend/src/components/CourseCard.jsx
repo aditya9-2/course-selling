@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import SecondaryBtn from "./secondaryBtn";
-const CourseCard = ({ title, subtitle, price, img, onCLick }) => {
+const CourseCard = ({ title, subtitle, price, img, onClick }) => {
   return (
     <div className="bg-white h-84 min-h-[400px] w-80  rounded shadow-xl border border-gray-600 flex flex-col">
       <img src={img} alt="" className="w-full h-40 object-cover rounded-t" />
@@ -16,7 +16,7 @@ const CourseCard = ({ title, subtitle, price, img, onCLick }) => {
       </p>
 
       <div className="px-4 mt-auto py-4 flex justify-center">
-        <SecondaryBtn label={"View Course"} onCLick={onCLick} />
+        <SecondaryBtn label={"View Course"} onCLick={onClick} />
       </div>
     </div>
   );
