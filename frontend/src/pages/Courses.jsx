@@ -8,7 +8,7 @@ const Courses = () => {
   const fetchCourse = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/v1/course/preview-Courses`
+        `${import.meta.env.VITE_BASE_URL}/api/v1/course/preview-Courses`
       );
       const data = response.data;
       console.log(JSON.stringify(data));
