@@ -56,6 +56,7 @@ const Dashboard = () => {
               img={course.courseId?.imageUrl}
               price={course.price}
               onClick={toggleCourse}
+              BtnLabel={"view Course"}
             />
           ))
         ) : (
