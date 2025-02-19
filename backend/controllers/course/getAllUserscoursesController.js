@@ -12,7 +12,9 @@ const getAlluserCourses = async (req, res) => {
             });
         }
 
-        const userCourses = await purchasesModel.find({ userId: userId });
+        const userCourses = await purchasesModel
+            .find({ userId: userId })
+            .populate("courseId", "title description imageUrl"); // this populate the courseId description
 
         if (userCourses.length === 0) {
             return res.status(404).json({
