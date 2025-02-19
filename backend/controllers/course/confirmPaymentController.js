@@ -3,11 +3,11 @@ import { verifyPayment } from "../../services/paymentService.js";
 import courseModel from "../../models/course.model.js";
 
 
-// TODO: It need a test haven't test this yet
 
 const confirmPayment = async (req, res) => {
     const { paymentDetails, courseId } = req.body;
     const userId = req.user.userId;
+
 
     try {
         // Verify the payment signature
@@ -28,8 +28,18 @@ const confirmPayment = async (req, res) => {
             });
         }
 
+
         // Check if the course exists in the database
         const course = await courseModel.findById(courseId);
+
+        const adminId = course.adminId;
+
+        if (!adminId) {
+            return res.status(400).json({
+                message: "Admin ID not found for the course"
+            });
+        }
+
         if (!course) {
             return res.status(404).json({
                 message: "Course not found"
@@ -47,6 +57,7 @@ const confirmPayment = async (req, res) => {
         const newPurchase = await purchasesModel.create({
             courseId,
             userId,
+            adminId,
             transactionId: paymentDetails.razorpay_payment_id,
             price: paymentDetails.amount,
         });
