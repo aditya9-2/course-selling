@@ -35,7 +35,7 @@ const Signin = () => {
       );
 
       const data = response.data;
-      console.log(JSON.stringify(data));
+
       const token = data.accessToken;
 
       localStorage.setItem("token", token);
