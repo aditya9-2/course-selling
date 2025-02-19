@@ -1,4 +1,4 @@
-import courseModel from "../../models/course.model.js";
+import purchasesModel from "../../models/purchases.model.js";
 
 const getAlluserCourses = async (req, res) => {
 
@@ -12,7 +12,7 @@ const getAlluserCourses = async (req, res) => {
             });
         }
 
-        const userCourses = await courseModel.find({ userId: userId });
+        const userCourses = await purchasesModel.find({ userId: userId });
 
         if (userCourses.length === 0) {
             return res.status(404).json({
