@@ -15,6 +15,7 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Video from "./pages/Video";
 import ScrollToTop from "./utils/ScrollToTop";
+import CourseDetails from "./pages/CourseDetails";
 
 const App = () => {
   return (
@@ -28,6 +29,8 @@ const App = () => {
           <Route path="/courses" element={<Courses />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/course-details/:id" element={<CourseDetails />} />
+
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/video" element={<Video />} />
