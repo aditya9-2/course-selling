@@ -50,6 +50,7 @@ const Courses = () => {
               title={course.title}
               subtitle={course.description}
               price={course.price}
+              BtnLabel={"View Details"}
             />
           ))}
         </div>
