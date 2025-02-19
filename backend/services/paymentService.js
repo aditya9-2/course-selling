@@ -14,7 +14,7 @@ const razorpayInstance = new Razorpay({
 
 const createOrder = async (amount, currency = "INR") => {
     try {
-        const order = razorpayInstance.orders.create({
+        const order = await razorpayInstance.orders.create({
             amount: amount,
             currency,
             receipt: `receipt_${Date.now()}`
@@ -35,7 +35,7 @@ const verifyPayment = (paymentDetails) => {
         .update(razorpay_order_id + "|" + razorpay_payment_id)
         .digest("hex");
 
-    console.log(`generatedSignature: ${generatedSignature}`);
+    // console.log(`generatedSignature: ${generatedSignature}`);
 
     if (generatedSignature === razorpay_signature) {
         return true;
