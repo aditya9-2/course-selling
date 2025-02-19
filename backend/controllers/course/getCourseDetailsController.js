@@ -3,7 +3,7 @@ import courseModel from "../../models/course.model.js";
 const getCourseDetails = async (req, res) => {
 
     const { id } = req.params;
-    console.log(id);
+
 
     try {
         if (!id) {
