@@ -5,6 +5,7 @@ import connectDB from "./config/db.js";
 import userRouter from "./routes/userRouter.js";
 import adminRouter from "./routes/adminRouter.js";
 import courseRouter from "./routes/courseRouter.js";
+import paymetRouter from "./routes/paymentRouter.js"
 
 
 dotenv.config();
@@ -18,6 +19,7 @@ app.use(cors({ origin: "*" }))
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/course', courseRouter);
+app.use('/api/v1/payment', paymetRouter);
 
 const connection = async () => {
     await connectDB();
