@@ -7,15 +7,18 @@ import getAllAdminCourses from "../controllers/course/getAllAdminCourseControlle
 import getAlluserCourses from "../controllers/course/getAllUserscoursesController.js";
 import previewCourses from "../controllers/course/previewCoursesController..js";
 import confirmPayment from "../controllers/course/confirmPaymentController.js";
+import getCourseDetails from "../controllers/course/getCourseDetailsController.js";
 
 
 const router = express.Router();
 
 router.get('/preview-Courses', previewCourses);
+router.get('/get-course-details/:id', getCourseDetails);
 router.get('/all-user-courses', userauthentication, getAlluserCourses);
 router.get('/all-admin-courses', adminAuthentication, getAllAdminCourses);
 router.post('/purchase-course', userauthentication, purchaseCourse);
 router.post('/confiirm-payment', userauthentication, confirmPayment);
+
 
 
 export default router;
