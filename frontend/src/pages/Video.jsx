@@ -9,7 +9,7 @@ const Video = () => {
     <div className="h-screen p-18 flex flex-col justify-center items-center">
       <div className=" flex justify-center items-center gap-3 text-xl text-gray-400">
         <FileVideo2 className="w-17" />
-        <p>Hmm! seems like admin have not reloease any course videos</p>
+        <p>Hmm! seems like admin have not release any course videos</p>
       </div>
       <div className="mt-4">
         <SecondaryBtn
