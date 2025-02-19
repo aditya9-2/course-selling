@@ -15,7 +15,7 @@ const Video = () => {
         <SecondaryBtn
           label={"Back to Dashboard"}
           width="w-76"
-          onCLick={() => navigate("/dashboard")}
+          onClick={() => navigate("/dashboard")}
         />
       </div>
     </div>
