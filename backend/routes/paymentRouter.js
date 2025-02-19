@@ -1,7 +1,7 @@
 import express from "express";
 import userauthentication from "../middleware/userAuthTokenMiddleware.js";
-import purchaseCourse from "../controllers/course/purchaseCourseController";
-import confirmPayment from "../controllers/course/confirmPaymentController";
+import purchaseCourse from "../controllers/course/purchaseCourseController.js";
+import confirmPayment from "../controllers/course/confirmPaymentController.js";
 
 const router = express.Router();
 
