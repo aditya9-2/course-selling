@@ -1,9 +1,13 @@
 import CourseCard from "../components/CourseCard";
 import { useEffect, useState } from "react";
+
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
+
+  const navigate = useNavigate();
 
   const fetchCourse = async () => {
     try {
@@ -11,7 +15,6 @@ const Courses = () => {
         `${import.meta.env.VITE_BASE_URL}/api/v1/course/preview-Courses`
       );
       const data = response.data;
-      console.log(JSON.stringify(data));
 
       if (data.courses && Array.isArray(data.courses)) {
         setCourses(data.courses);
@@ -42,8 +45,8 @@ const Courses = () => {
           {courses.map((course) => (
             <CourseCard
               key={course._id}
-              onClick={() => console.log(`Clicked ${course.title}`)}
-              img={course.imageUrl} // Use course image
+              onClick={() => navigate(`/course-details/${course._id}`)}
+              img={course.imageUrl}
               title={course.title}
               subtitle={course.description}
               price={course.price}
