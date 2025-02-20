@@ -46,6 +46,15 @@ const CourseDetails = () => {
 
   const handlePayment = async () => {
     const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("Please login to purchase the course", {
+        position: "bottom-right",
+        duration: 1500,
+        style: { backgroundColor: "red", color: "white" },
+      });
+      return;
+    }
+
     try {
       const purchaseCourseResponse = await axios.post(
         `${import.meta.env.VITE_BASE_URL}/api/v1/payment/purchase-course`,
@@ -59,16 +68,17 @@ const CourseDetails = () => {
         }
       );
 
-      const { amount, currency, orderId, title } = purchaseCourseResponse.data;
+      const { amount, currency, orderId } = purchaseCourseResponse.data;
 
       // const data = purchaseCourseResponse.data;
 
       const options = {
         key: import.meta.env.VITE_RAZORPAY_KEY,
-        amount,
-        currency,
+        amount: amount,
+        currency: currency,
         order_id: orderId,
-        name: `Payment for ${title}`,
+        name: course.title,
+        description: `Payment for ${course.title}`,
         prefill: {
           email: "",
           contact: "",
@@ -76,7 +86,8 @@ const CourseDetails = () => {
         theme: {
           color: "#5A47AB",
         },
-        handler: async function (response) {
+
+        handler: async (response) => {
           try {
             const veifyResponse = await axios.post(
               `${import.meta.env.VITE_BASE_URL}/api/v1/payment/confirm-payment`,
@@ -85,11 +96,10 @@ const CourseDetails = () => {
                   razorpay_order_id: response.razorpay_order_id,
                   razorpay_payment_id: response.razorpay_payment_id,
                   razorpay_signature: response.razorpay_signature,
-                  amount,
+                  amount: amount,
                 },
                 courseId: course._id,
               },
-
               {
                 headers: {
                   Authorization: `Bearer ${token}`,
@@ -97,45 +107,73 @@ const CourseDetails = () => {
               }
             );
 
+            if (veifyResponse.data.message) {
+              toast.success("Payment Sucessful", {
+                position: "bottom-right",
+                duration: 1500,
+                style: { backgroundColor: "green", color: "white" },
+              });
+
+              setTimeout(() => {
+                window.location.reload();
+                navigate("/");
+              }, 1500);
+            }
+
             console.log(`paymentId: ${response.razorpay_payment_id}`);
 
             const data = veifyResponse.data;
 
             console.log(`VerifyResponse: ${data}`);
 
-            if (data.sucess) {
-              toast.success("Payment Sucessful", {
-                position: "bottom-right",
-                duration: 1500,
-                style: { backgroundColor: "green", color: "white" },
-              });
-              setTimeout(() => {
-                window.location.reload();
-                navigate("/");
-              }, 1500);
-            } else {
-              toast.error("Payment Failed", {
-                position: "bottom-right",
-                duration: 1500,
-                style: { backgroundColor: "red", color: "white" },
-              });
-              setTimeout(() => {
-                window.location.reload();
-                navigate("/");
-              }, 1500);
-            }
+            console.log(`success: ${data.success}`);
+
+            // if (data.success) {
+            //   toast.success("Payment Sucessful", {
+            //     position: "bottom-right",
+            //     duration: 1500,
+            //     style: { backgroundColor: "green", color: "white" },
+            //   });
+
+            //   setTimeout(() => {
+            //     window.location.reload();
+            //     navigate("/");
+            //   }, 1500);
+            // } else {
+            //   toast.error("Payment Failed", {
+            //     position: "bottom-right",
+            //     duration: 1500,
+            //     style: { backgroundColor: "red", color: "white" },
+            //   });
+            // }
           } catch (err) {
-            console.error("Error verifying payment:", err.message);
-            alert("Payment verification error.");
+            console.error("Error verifying payment:", err);
+            toast.error("Payment verification failed", {
+              position: "bottom-right",
+              duration: 1500,
+              style: { backgroundColor: "red", color: "white" },
+            });
           }
+        },
+        modal: {
+          ondismiss: () => {
+            toast.error("Payment cancelled", {
+              position: "bottom-right",
+              duration: 1500,
+              style: { backgroundColor: "red", color: "white" },
+            });
+          },
         },
       };
 
       const razorpay = new window.Razorpay(options);
-
       razorpay.open();
     } catch (err) {
-      console.error("Payment Error:", err.message);
+      console.error("Payment initialization failed:", err);
+      toast.error("Failed to initialize payment", {
+        position: "bottom-right",
+        duration: 1500,
+      });
     }
   };
 
@@ -151,9 +189,7 @@ const CourseDetails = () => {
           </div>
           <div className="absolute top-65 md:top-43 left-9 md:left-270 ">
             <CourseCard
-              img={
-                "https://appxcontent.kaxa.in/paid_course3/2024-07-07-0.07833836520330406.png"
-              }
+              img={course.imageUrl}
               title={course.title}
               subtitle={course.description}
               price={course.price}
@@ -172,7 +208,7 @@ const CourseDetails = () => {
           </div>
         </>
       ) : (
-        <p className="text-center p-30">No data found</p>
+        <p className="text-center p-30">Loading course details...</p>
       )}
       <Toaster />
     </div>
