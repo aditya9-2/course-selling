@@ -70,6 +70,14 @@ const Navbar = () => {
           >
             Courses
           </li>
+          {isAuthenticated && (
+            <li
+              className="hover:opacity-85 my-5"
+              onClick={() => navigate("/dashboard")}
+            >
+              Dashboard
+            </li>
+          )}
         </ul>
       </div>
 
@@ -116,6 +124,14 @@ const Navbar = () => {
             >
               Courses
             </li>
+            {isAuthenticated && (
+              <li
+                className="hover:opacity-85 my-5"
+                onClick={() => navigate("/dashboard")}
+              >
+                Dashboard
+              </li>
+            )}
           </ul>
         </div>
 
