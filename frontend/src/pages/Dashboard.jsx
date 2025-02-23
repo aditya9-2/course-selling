@@ -60,7 +60,9 @@ const Dashboard = () => {
             />
           ))
         ) : (
-          <h1>Hmm! Seems like you {"have'nt"} Buy Any Course </h1>
+          <div className="h-screen flex justify-center items-center">
+            <h1>Hmm! Seems like you {"have'nt"} Buy Any Course </h1>
+          </div>
         )}
       </div>
     </div>
